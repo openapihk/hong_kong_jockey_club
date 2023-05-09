@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  name: Default
+
+stages:
+- stage: api_live
+  displayName: 'Test the API server is live'
+  jobs:
+  - job: test
+    steps:
+    - script: |
+        portman -l aedwt.yaml -c portman-config.json -n
+
+- stage: schema_validation
+  displayName: 'Validate schema from API server'
+  jobs:
+  - job: test
+    steps:
+    - script: |
+        portman -l aedwt.yaml -c portman-config-schema-validation.json -n
