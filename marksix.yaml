@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: Hong Kong Jockey Club
+  version: 1.0.0
+  description: mock cannot return proper mimetype. response result would look strange. you will hit CORS to bet.hkjc.com as wells
+servers:
+  - url: https://bet.hkjc.com
+  - url: /mock
+paths:
+  /marksix/getJSON.aspx:
+    get:
+      tags:
+        - marksix
+      summary: Finds Pets by status
+      description: Multiple status values can be provided with comma separated strings
+      operationId: findPetsByStatus
+      parameters:
+        - name: sd
+          in: query
+          description: Start date in format of yyyymmdd
+          required: true
+          schema:
+            type: string
+            default: 20230101
+        - name: ed
+          in: query
+          description: End date in format of yyyymmdd
+          required: true
+          schema:
+            type: string
+            default: 20230228
+        - name: sb
+          in: query
+          description: Unknown
+          required: false
+          schema:
+            type: string
+            default: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Results'          
+components:
+  schemas:
+    Result:
+      properties:
+        id:
+          title: draw number
+          type: string
+          example: 23/022
+        date:
+          title: draw date
+          type: string
+          example: 28/02/2023
+        no:
+          title: draw result separated by plus sign
+          type: string
+          example: "8+13+29+33+40+42"
+        sno:
+          type: integer
+          example: 3
+        sbcode:
+          title: snowball code
+          type: string
+          example: "SBD"
+          nullable: false
+        sbnameE: 
+          title: snowball name in English
+          type: string
+          example: "New Year Snowball"
+          nullable: false
+        sbnameC:
+          title: snowball name in Chinese
+          type: string
+          example: "新年金多寶"
+          nullable: false
+        inv:
+          title: total turnover
+          type: string
+          example: "75,499,361"
+        p1:
+          title: 1st unit prize
+          type: string
+          example: "41,228,280"
+        p1u:
+          title: 1st prize winning unit
+          type: number
+          example: "1.0"
+        p2:
+          title: 2nd unit prize
+          type: string
+          example: "41,228,280"
+        p2u:
+          title: 2nd prize winning unit
+          type: number
+          example: "1.0"
+        p3:
+          title: 3rd unit prize
+          type: string
+          example: "41,228,280"
+        p3u:
+          title: 3rd prize winning unit
+          type: number
+          example: "1.0"
+        p4:
+          title: 4th unit prize
+          type: string
+          example: "41,228,280"
+        p4u:
+          title: 4th prize winning unit
+          type: number
+          example: "1.0"
+        p5:
+          title: 5th unit prize
+          type: string
+          example: "41,228,280"
+        p5u:
+          title: 5th prize winning unit
+          type: number
+          example: "1.0"
+        p6:
+          title: 6th unit prize
+          type: string
+          example: "41,228,280"
+        p6u:
+          title: 6th prize winning unit
+          type: number
+          example: "1.0"
+        p7:
+          title: 7th unit prize
+          type: string
+          example: "41,228,280"
+        p7u:
+          title: 7th prize winning unit
+          type: number
+          example: "1.0"
+    Results:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/Result'
