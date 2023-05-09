@@ -24,4 +24,4 @@ stages:
   - job: test
     steps:
     - script: |
-        portman -l aedwt.yaml -c portman-config-schema-validation.json -n
+        portman -l marksix.yaml -c portman-config-schema-validation.json -n
