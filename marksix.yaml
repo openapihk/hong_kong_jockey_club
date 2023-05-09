@@ -1,19 +1,29 @@
 openapi: 3.0.3
+tags: 
+  - name: Private/Undocumeneted
+    description: Use at your own risk
 info:
-  title: Hong Kong Jockey Club
+  title: Hong Kong Jockey Club Mark Six draw results
   version: 1.0.0
-  description: mock cannot return proper mimetype. response result would look strange. you will hit CORS to bet.hkjc.com as wells
+  description: The results of Mark Six draws results, the associated snowball information and prize pool from Hong Kong Jockey Club.
+  contact:
+    name: Neo Alienson
+    email: 'neo@01man.com'
+    url: https://openapihk.github.io/portal
+  termsOfService: https://openapihk.github.io/misc/terms_of_service.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html  
 servers:
   - url: https://bet.hkjc.com
-  - url: /mock
 paths:
   /marksix/getJSON.aspx:
     get:
       tags:
         - marksix
-      summary: Finds Pets by status
+      summary: Get Mark Six results
       description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+      operationId: getMarksix
       parameters:
         - name: sd
           in: query
