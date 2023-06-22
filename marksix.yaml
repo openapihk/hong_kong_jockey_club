@@ -55,6 +55,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Results'          
+  /contentserver/jcbw/cmc/last60daysdraw.json:
+    get:
+      summary: Get last 60 days draw results
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Results'   
 components:
   schemas:
     Result:
@@ -149,8 +161,3 @@ components:
           title: 7th prize winning unit
           type: number
           example: "1.0"
-    Results:
-      type: array
-      items:
-        oneOf:
-          - $ref: '#/components/schemas/Result'
